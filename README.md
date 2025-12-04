@@ -6,3 +6,6 @@ gsettings set org.gnome.desktop.wm.preferences button-layout ':'
 i am using:
 nwg-look for managing theme and icon and related setting for all gtkk apps.
 kvantummanager for managing kde settings and apps with qt5ct and qt6ct.
+network-manager-applet  for managing wifi with hyprpanel
+bluez bluez-utils  for managing bluetooth
+brightnessctl   for managing brightness for keyboard
