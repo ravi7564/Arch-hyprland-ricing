@@ -28,3 +28,5 @@ ExecStart= -/usr/bin/agetty --noissue --autologin ravi --noclear %I $TERM
 to
 /etc/systemd/system/getty@tty1.service.d/override.conf
 then save.
+waybar  for top bar or anywhere on the screen you want.
+wlogou   for logout menu.
