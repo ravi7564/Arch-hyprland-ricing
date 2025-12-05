@@ -128,7 +128,7 @@
   "custom/power": {
     "tooltip": false,
     "on-click": "wlogout -p layer-shell &",
-    "format": " PWR"
+    "format": ""
   },
   "custom/notification": {
     "escape": true,
