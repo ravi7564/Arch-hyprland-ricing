@@ -17,6 +17,7 @@
     "battery",
     "clock",
     "clock#simpleclock",
+    "custom/bluetooth",
     "tray",
     "custom/notification",
     "custom/power"
@@ -47,7 +48,7 @@
   },
   "hyprland/window": {
     "format": "{title}",
-    "max-length": 50
+    "max-length": 30
   },
   "tray": {
     "show-passive-items": true,
@@ -97,12 +98,11 @@
     "scroll-step": 5
   },
   "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
+    "path": "/sys/class/power_supply/BAT1",
+    "states": { "warning": 30, "critical": 15 },
     "format": "{icon} {capacity}%",
     "format-charging": " {capacity}%",
+    "format-discharging": "{icon} {capacity}%",
     "format-plugged": " {capacity}%",
     "format-full": " FULL",
     "tooltip-format": "{timeTo}\n{capacity}%",
@@ -137,6 +137,13 @@
     "format": " {}",
     "return-type": "json",
     "on-click": "sleep 0.1 && swaync-client -t -sw",
+    "tooltip": false
+  },
+  "custom/bluetooth": {
+    "exec": "bluetoothctl devices | cut -d ' ' -f 3- | awk '{print $1, $2}' | paste -sd ', ' -",
+    "format": " {}",
+    "interval": 5,
+    "on-click": "blueman-manager",
     "tooltip": false
   }
 }
