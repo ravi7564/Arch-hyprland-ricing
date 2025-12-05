@@ -1,28 +1,24 @@
 * {
   min-height: 0;
   min-width: 0;
-  font-family: Lexend, "JetBrainsMono NFP";
-  font-size: 16px;
+  font-family: Lexend, "JetBrainsMono NFP", sans-serif;
+  font-size: 14px;
   font-weight: 600;
 }
 
 window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
-  /* background-color: #1e1e2e; */
-  /* background-color: #181825; */
   background-color: #11111b;
-  /* background-color: rgba(24, 24, 37, 0.6); */
-  padding: 0 10px;
 }
 
 #workspaces button {
-  padding: 0.3rem 0.6rem;
+  padding: 0.4rem 0.7rem;
   margin: 0.4rem 0.25rem;
   border-radius: 6px;
-  /* background-color: #181825; */
   background-color: #1e1e2e;
   color: #cdd6f4;
+  transition: all 0.3s ease;
 }
 
 #workspaces button:hover {
@@ -33,6 +29,7 @@ window#waybar {
 #workspaces button.active {
   background-color: #1e1e2e;
   color: #89b4fa;
+  border-bottom: 2px solid #89b4fa;
 }
 
 #workspaces button.urgent {
@@ -53,11 +50,15 @@ window#waybar {
 #mpris,
 #battery,
 #network {
-  padding: 0.3rem 0.6rem;
+  padding: 0.4rem 0.8rem;
   margin: 0.4rem 0.25rem;
   border-radius: 6px;
-  /* background-color: #181825; */
   background-color: #1e1e2e;
+  color: #cdd6f4;
+}
+
+#mpris {
+  padding: 0.4rem 1rem;
 }
 
 #mpris.playing {
@@ -66,10 +67,12 @@ window#waybar {
 
 #mpris.paused {
   color: #9399b2;
+  font-style: italic;
 }
 
 #custom-sep {
-  padding: 0px;
+  padding: 0;
+  margin: 0;
   color: #585b70;
 }
 
@@ -79,26 +82,32 @@ window#waybar.empty #window {
 
 #cpu {
   color: #94e2d5;
+  min-width: 50px;
 }
 
 #memory {
   color: #cba6f7;
+  min-width: 60px;
 }
 
 #clock {
   color: #74c7ec;
+  min-width: 80px;
 }
 
 #clock.simpleclock {
   color: #89b4fa;
+  min-width: 55px;
 }
 
 #window {
   color: #cdd6f4;
+  font-weight: 500;
 }
 
 #pulseaudio {
   color: #b4befe;
+  min-width: 50px;
 }
 
 #pulseaudio.muted {
@@ -111,10 +120,12 @@ window#waybar.empty #window {
 
 #custom-power {
   color: #f38ba8;
+  font-weight: bold;
 }
 
 #battery {
   color: #a6e3a1;
+  min-width: 60px;
 }
 
 #battery.charging {
@@ -130,21 +141,48 @@ window#waybar.empty #window {
   animation: blink 1s linear infinite;
 }
 
+#battery.full {
+  color: #a6e3a1;
+}
+
 @keyframes blink {
-  to {
+  50% {
     opacity: 0.5;
   }
 }
 
 #network {
   color: #89dceb;
+  min-width: 80px;
 }
 
 #network.disconnected {
   color: #a6adc8;
 }
 
+#network.ethernet {
+  color: #94e2d5;
+}
+
+#tray {
+  background-color: #1e1e2e;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #f38ba8;
+}
+
 tooltip {
   background-color: #181825;
   border: 2px solid #89b4fa;
+  border-radius: 6px;
+}
+
+tooltip label {
+  color: #cdd6f4;
 }
