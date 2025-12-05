@@ -30,3 +30,4 @@ to
 then save.
 waybar  for top bar or anywhere on the screen you want.
 wlogou   for logout menu.
+swaync   for waybar notification.
