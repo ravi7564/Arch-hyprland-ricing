@@ -1,0 +1,162 @@
+
+/* Catppuccin Mocha Colors:
+   Crust: #11111B | Mantle: #181825
+   Text: #CDD6F4 | Lavender: #B4BEFE | Surface0: #313244
+*/
+
+* {
+    font-family: "JetBrains Mono", "Share Tech Mono", monospace;
+    font-size: 15px;
+}
+
+/* Main window (Mocha Crust Base) */
+window {
+    margin: 0px;
+    /* Border in Catppuccin Lavender */
+    border: 3px solid rgba(180, 190, 254, 0.9); /* Lavender */
+    background-color: #11111B; /* Crust - High opacity */
+    border-radius: 12px;
+    /* Lavender dominant glow for depth */
+    box-shadow: 0 0 10px rgba(180, 190, 254, 0.3),
+                0 0 40px rgba(180, 190, 254, 0.5),
+                0 0 80px rgba(180, 190, 254, 0.3);
+    transition: box-shadow 0.3s ease-out;
+}
+
+#outer-box {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+}
+
+/* Search input (Mantle Base) */
+#input {
+    margin: 16px;
+    padding: 16px 25px;
+    border: 1px solid rgba(180, 190, 254, 0.6); /* Stronger Lavender border */
+    background-color: rgba(24, 24, 37, 0.85); /* Mantle, slightly transparent */
+    color: #B4BEFE; /* Lavender text color for input */
+    border-radius: 8px;
+    /* Sharper inner shadow with Lavender glow */
+    box-shadow: 0 0 25px rgba(180, 190, 254, 0.2),
+                inset 0 0 30px rgba(180, 190, 254, 0.2);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#input:focus {
+    border-color: #CDD6F4; /* White/Text color on focus */
+    /* Intense focus glow in Lavender */
+    box-shadow: 0 0 50px rgba(180, 190, 254, 0.8),
+                inset 0 0 40px rgba(180, 190, 254, 0.5);
+    outline: none;
+}
+
+#input image {
+    color: #B4BEFE; /* Lavender image color */
+}
+
+#inner-box {
+    margin: 0px;
+    padding: 10px;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+}
+
+#text {
+    margin: 0px;
+    padding: 0px;
+    color: #CDD6F4; /* Main Catppuccin Text color */
+    text-shadow: 0 0 2px rgba(180, 190, 254, 0.15); /* Lavender text shadow */
+}
+
+/* App entries (Data Nodes) */
+#entry {
+    margin: 5px 10px;
+    padding: 14px 20px;
+    border: 1px solid rgba(49, 50, 68, 0.4); /* Surface0 border */
+    /* Subtler gradient from Crust to Mantle */
+    background: linear-gradient(135deg,
+                                rgba(17, 17, 27, 0.6) 0%, /* Crust */
+                                rgba(24, 24, 37, 0.5) 100%); /* Mantle */
+    border-radius: 8px;
+    transition: all 0.25s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+#entry:hover {
+    /* Active hover state - Lavender background wash */
+    background: linear-gradient(135deg,
+                                rgba(180, 190, 254, 0.2) 0%,
+                                rgba(24, 24, 37, 0.7) 100%);
+    border: 1px solid rgba(180, 190, 254, 0.7); /* Lavender border on hover */
+    /* Soft Lavender glow */
+    box-shadow: 0 0 15px rgba(180, 190, 254, 0.3),
+                inset 0 0 20px rgba(180, 190, 254, 0.1);
+    transform: scale(1.01);
+}
+
+#entry:selected {
+    /* Strong selected state - Lavender dominant background */
+    background: linear-gradient(135deg,
+                                rgba(180, 190, 254, 0.95) 0%, /* Lavender dominant start */
+                                rgba(100, 100, 150, 0.8) 100%); /* Slightly darker Lavender finish */
+    border: 3px solid #CDD6F4; /* White/Text color border for contrast */
+    /* Maxed out Lavender glow */
+    box-shadow: 0 0 50px rgba(180, 190, 254, 0.9),
+                inset 0 0 60px rgba(180, 190, 254, 0.3);
+    outline: none;
+    transform: scale(1.0);
+}
+
+#entry:selected #text {
+    color: #11111B; /* Dark text on bright background for maximum contrast */
+    font-weight: 700;
+    text-shadow: none;
+}
+
+/* Icons (Visual Cues) */
+#entry image {
+    margin-right: 15px;
+    /* Soft icon glow in Lavender */
+    filter: drop-shadow(0 0 8px rgba(180, 190, 254, 0.4));
+}
+
+#entry:selected image {
+    /* Intense icon glow in Lavender on selected */
+    filter: drop-shadow(0 0 16px #B4BEFE);
+}
+
+#no-results {
+    color: #B4BEFE; /* Lavender for "No Results" */
+    font-size: 14px;
+    padding: 50px;
+    text-align: center;
+    font-weight: 500;
+}
+
+#expander {
+    background-color: transparent;
+}
+
+/* Tech corner brackets (Holographic Accent) */
+window {
+    background-image:
+        /* Top-Left: Lavender */
+        linear-gradient(90deg, #B4BEFE 0%, #B4BEFE 45px, transparent 45px),
+        linear-gradient(0deg, #B4BEFE 0%, #B4BEFE 3px, transparent 3px),
+        /* Top-Right: Lavender */
+        linear-gradient(90deg, transparent calc(100% - 45px), #B4BEFE calc(100% - 45px)),
+        linear-gradient(0deg, transparent calc(100% - 3px), #B4BEFE calc(100% - 3px));
+
+    background-size: 100% 3px, 3px 45px, 100% 3px, 3px 45px;
+    background-position: 0 0, 0 0, 100% 0, 100% 0;
+
+    background-repeat: no-repeat;
+    /* Subtle bottom border in Surface0 */
+    border-bottom: 2px solid rgba(49, 50, 68, 0.8);
+}
