@@ -30,3 +30,4 @@ to
 then save.
 waybar  for top bar or anywhere on the screen you want and i am using mechbar 
 https://github.com/sejjy/mechabar
+swaync for notification
