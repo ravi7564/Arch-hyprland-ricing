@@ -7,30 +7,26 @@
 
   "modules-left": [
     "custom/launcher",
-    "hyprland/workspaces",
-    //"custom/weather",
-    //"custom/updates",
-    "custom/cava"
+    "hyprland/workspaces"
+    //"custom/cava"
+
   ],
 
   "modules-center": [
-    "memory",
-    "cpu",
-    "temperature"
+  "tray",
+  "backlight",
+  "memory",
+  "cpu",
+  "temperature"
   ],
 
   "modules-right": [
-    //"idle_inhibitor",
-    "battery",
-    //"hyprland/language",
-   // "keyboard-state",
-    "backlight",
+    "mpris",
     "pulseaudio",
     "network",
-    //"custom/vpn",
     "clock",
+    "battery",
     "custom/notification",
-    "tray",
     "custom/wlogout"
   ]
 
