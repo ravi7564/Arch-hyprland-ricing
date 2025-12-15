@@ -3,7 +3,7 @@
   "include": "~/.config/waybar/modules.jsonc",
   "layer": "top",
   "position": "top",
-  "height": 30,
+  "height": 32,
 
   "modules-left": [
     "custom/launcher",
@@ -13,17 +13,16 @@
   ],
 
   "modules-center": [
-  "tray",
   "backlight",
   "memory",
   "cpu",
-  "temperature"
+  "temperature",
+  "tray"
   ],
 
   "modules-right": [
     "mpris",
     "pulseaudio",
-    "network",
     "clock",
     "battery",
     "custom/notification",
