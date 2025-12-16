@@ -79,5 +79,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 
 #install and remove
+alias update='sudo pacman -Sy'
+alias upgrade='sudo pacman -Syu'
 alias install='sudo pacman -S'
 alias remove='sudo pacman -Rns'
