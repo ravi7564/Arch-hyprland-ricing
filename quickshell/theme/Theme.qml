@@ -1,5 +1,5 @@
-pragma Singleton
 import QtQuick
+pragma Singleton
 
 QtObject {
     // Tokyo Night Theme
@@ -13,7 +13,6 @@ QtObject {
     property color yellow: "#e0af68"
     property color blue: "#7aa2f7"
     property color green: "#9ece6a"
-
     property string fontFamily: "JetBrainsMono Nerd Font"
     property int fontSize: 13
 }

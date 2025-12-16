@@ -1,10 +1,10 @@
-import Quickshell
-import Quickshell.Wayland
-import Quickshell.Io
+import "./components"
+import "./theme"
 import QtQuick
 import QtQuick.Layouts
-import "./theme"
-import "./components"
+import Quickshell
+import Quickshell.Io
+import Quickshell.Wayland
 
 ShellRoot {
     id: root
@@ -12,16 +12,19 @@ ShellRoot {
     // --- Global Processes (Launchers & Tools) ---
     Process {
         id: rofiProc
+
         command: ["sh", "-c", "~/.config/rofi/launchers/type-1/launcher.sh"]
     }
 
     Process {
         id: powerProc
+
         command: ["sh", "-c", "~/.config/rofi/powermenu/type-1/powermenu.sh"]
     }
 
     Process {
         id: notifProc
+
         command: ["swaync-client", "-t"]
     }
 
@@ -30,12 +33,23 @@ ShellRoot {
 
         PanelWindow {
             property var modelData
-            screen: modelData
 
-            anchors { top: true; left: true; right: true }
+            screen: modelData
             implicitHeight: 36
             color: "transparent"
-            margins { top: 4; left: 6; right: 6; bottom: 0 }
+
+            anchors {
+                top: true
+                left: true
+                right: true
+            }
+
+            margins {
+                top: 4
+                left: 6
+                right: 6
+                bottom: 0
+            }
 
             Rectangle {
                 anchors.fill: parent
@@ -62,31 +76,49 @@ ShellRoot {
 
                         RowLayout {
                             id: leftContent
+
                             anchors.centerIn: parent
                             spacing: 6
 
                             Item {
-                                Layout.preferredWidth: 20; Layout.preferredHeight: 20
+                                Layout.preferredWidth: 20
+                                Layout.preferredHeight: 20
+
                                 Text {
-                                    text: "󰣇"; color: Theme.cyan; font.pixelSize: 16
+                                    text: "󰣇"
+                                    color: Theme.cyan
+                                    font.pixelSize: 16
                                     font.family: Theme.fontFamily
                                     anchors.centerIn: parent
                                 }
+
                                 MouseArea {
-                                    anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                    anchors.fill: parent
+                                    cursorShape: Qt.PointingHandCursor
                                     onClicked: rofiProc.running = true
                                 }
+
                             }
 
-                            Rectangle { width: 1; height: 14; color: Theme.muted; opacity: 0.5 }
-                            Workspaces {}
+                            Rectangle {
+                                width: 1
+                                height: 14
+                                color: Theme.muted
+                                opacity: 0.5
+                            }
+
+                            Workspaces {
+                            }
+
                         }
+
                     }
 
                     // ======================================
                     // CENTER SECTION: Media & Active Window
                     // ======================================
-                    MediaBar {}
+                    MediaBar {
+                    }
 
                     // ========================================================
                     // RIGHT SECTION: Stats -> Clock -> Notif -> Battery -> Power
@@ -100,55 +132,95 @@ ShellRoot {
 
                         RowLayout {
                             id: rightContent
+
                             anchors.centerIn: parent
                             spacing: 10
 
                             // 1. System Stats (CPU, RAM, Disk, Vol)
-                            SystemStats {}
+                            SystemStats {
+                            }
 
-                            Rectangle { width: 1; height: 14; color: Theme.muted; opacity: 0.5 }
+                            Rectangle {
+                                width: 1
+                                height: 14
+                                color: Theme.muted
+                                opacity: 0.5
+                            }
 
                             // 2. Clock Widget (Moved here)
-                            Clock {}
+                            Clock {
+                            }
 
-                            Rectangle { width: 1; height: 14; color: Theme.muted; opacity: 0.5 }
+                            Rectangle {
+                                width: 1
+                                height: 14
+                                color: Theme.muted
+                                opacity: 0.5
+                            }
 
                             // 3. Notification Button (Before Battery)
                             Item {
-                                Layout.preferredWidth: 24; Layout.preferredHeight: 20
+                                Layout.preferredWidth: 24
+                                Layout.preferredHeight: 20
+
                                 Text {
-                                    text: "󰍡"; color: Theme.purple; font.pixelSize: 16
+                                    text: "󰍡"
+                                    color: Theme.purple
+                                    font.pixelSize: 16
                                     font.family: Theme.fontFamily
                                     anchors.centerIn: parent
                                 }
+
                                 MouseArea {
-                                    anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                    anchors.fill: parent
+                                    cursorShape: Qt.PointingHandCursor
                                     onClicked: notifProc.running = true
                                 }
+
                             }
 
                             // 4. Battery Widget (Before Power)
-                            Battery {}
+                            Battery {
+                            }
 
-                            Rectangle { width: 1; height: 14; color: Theme.muted; opacity: 0.5 }
+                            Rectangle {
+                                width: 1
+                                height: 14
+                                color: Theme.muted
+                                opacity: 0.5
+                            }
 
                             // 5. Power Button (Last)
                             Item {
-                                Layout.preferredWidth: 24; Layout.preferredHeight: 20
+                                Layout.preferredWidth: 24
+                                Layout.preferredHeight: 20
+
                                 Text {
-                                    text: "⏻"; color: Theme.red; font.pixelSize: 16
+                                    text: "⏻"
+                                    color: Theme.red
+                                    font.pixelSize: 16
                                     font.family: Theme.fontFamily
                                     anchors.centerIn: parent
                                 }
+
                                 MouseArea {
-                                    anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                    anchors.fill: parent
+                                    cursorShape: Qt.PointingHandCursor
                                     onClicked: powerProc.running = true
                                 }
+
                             }
+
                         }
+
                     }
+
                 }
+
             }
+
         }
+
     }
+
 }

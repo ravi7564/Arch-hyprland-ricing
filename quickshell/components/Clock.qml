@@ -1,6 +1,6 @@
+import "../theme"
 import QtQuick
 import QtQuick.Layouts
-import "../theme"
 
 RowLayout {
     spacing: 4
@@ -14,6 +14,7 @@ RowLayout {
 
     Text {
         id: clockText
+
         text: Qt.formatDateTime(new Date(), "MMM dd • HH:mm")
         color: Theme.fg
         font.pixelSize: Theme.fontSize
@@ -21,8 +22,12 @@ RowLayout {
         font.bold: true
 
         Timer {
-            interval: 1000; running: true; repeat: true
+            interval: 1000
+            running: true
+            repeat: true
             onTriggered: clockText.text = Qt.formatDateTime(new Date(), "MMM dd • HH:mm")
         }
+
     }
+
 }
