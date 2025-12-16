@@ -65,7 +65,6 @@ run_cmd() {
       ;;
     suspend)
       playerctl pause 2>/dev/null
-      pactl set-sink-mute @DEFAULT_SINK@ toggle
       systemctl suspend
       ;;
     logout)
