@@ -5,7 +5,7 @@
     "on-click": "~/.config/rofi/launchers/type-1/launcher.sh",
     "tooltip": false
   },
-  // Workspaces (Hyprland)
+  // Workspaces
   "hyprland/workspaces": {
     "on-scroll-up": "hyprctl dispatch workspace r-1",
     "on-scroll-down": "hyprctl dispatch workspace r+1",
@@ -22,6 +22,28 @@
       "*": 5
     }
   },
+  // Window Title with Colored Icons (Using rewrite rules)
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 35,
+    "separate-outputs": true,
+    "rewrite": {
+      // 🌍 Web Browsers
+      "(.*) — Mozilla Firefox": "<span foreground='#FF9500'>󰈹</span>  Firefox",
+      "(.*) - Google Chrome": "<span foreground='#4285F4'></span>  Chrome",
+      "(.*) - Brave": "<span foreground='#FB542B'></span>  Brave",
+      // 💻 Development
+      "(.*) - Visual Studio Code": "<span foreground='#007ACC'>󰨞</span>  VS Code",
+      "(.*) - Neovim": "<span foreground='#57A143'></span>  Neovim",
+      // 🐚 Terminal (Matches "fish", "kitty", etc.)
+      "(.*) - fish": "<span foreground='#98c379'></span>  Terminal",
+      "kitty": "<span foreground='#98c379'></span>  Kitty",
+      // 🎵 Media & Social
+      "(.*) - Spotify": "<span foreground='#1DB954'></span>  Spotify",
+      "(.*) - Discord": "<span foreground='#5865F2'>󰙯</span>  Discord",
+      "(.*)": " $1"
+    }
+  },
   // CAVA Audio Visualizer
   "custom/cava": {
     "exec": "~/.config/waybar/scripts/cava.sh",
@@ -30,19 +52,30 @@
     "on-click-right": "playerctl next",
     "on-click-left": "playerctl previous"
   },
-  // Memory / CPU / Temp
+  // === NEW HARDWARE GROUP ===
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory",
+      "temperature"
+    ]
+  },
+  // Memory (Compact)
   "memory": {
-    "format": "🎞 {: >3}%",
+    "format": "🎞 {}%", // Removed ': >3' padding to save space
     "on-click": "neohtop"
   },
+  // CPU (Compact)
   "cpu": {
-    "format": "󰘚 {usage: >3}%",
+    "format": "󰘚 {usage}%", // Removed ': >3' padding
     "on-click": "neohtop"
   },
+  // Temperature
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "critical-threshold": 80,
-    "format": "  {temperatureC}°C",
+    "format": " {temperatureC}°C",
     "on-click": "neohtop"
   },
   "mpris": {
@@ -62,24 +95,32 @@
   // Battery
   "battery": {
     "bat": "BAT1",
-    "interval": 60,
+    "interval": 30,
     "states": {
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon}{capacity}% ",
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰂄 {capacity}%",
+    "format-alt": "{time} {icon}",
     "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂"
     ],
-    "max-length": 25
+    "tooltip": true
   },
-  // Backlight
+  // Backlight (Compact)
   "backlight": {
-    "format": "{icon} {percent: >3}%",
+    "format": "{icon} {percent}%", // Removed ': >3' padding
     "format-icons": [
       "",
       ""
@@ -109,24 +150,22 @@
     "tooltip-format": "Output: {volume}%\nClick: Audio Controls\nRight Click: PavuControl",
     "signal": 8
   },
-  // Network
   "network": {
     "format": "{ifname}",
-    "format-wifi": "ᯤ {essid} ({signalStrength}%)",
-    "format-ethernet": "  {ifname}",
-    "format-disconnected": "Disconnected ⚠",
+    "format-wifi": "ᯤ {essid}", // Removed signal strength to save space (it's in tooltip)
+    "format-ethernet": " {ifname}",
+    "format-disconnected": "⚠",
     "tooltip-format": " {ifname} via {gwaddri}",
-    "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+    "tooltip-format-wifi": " {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
     "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50,
     "on-click": "nm-connection-editor",
     "on-click-right": "nm-connection-editor"
   },
-  // Clock
   "clock": {
-    "format": "  {:%H:%M %a}",
-    "format-alt": "  {:%d/%m/%Y  %H:%M:%S}",
+    "format": " {:%H:%M}", // Removed Seconds and day to make it very small (hover for full date)
+    "format-alt": " {:%d/%m/%Y %H:%M:%S}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "month",
@@ -144,7 +183,6 @@
     },
     "interval": 1
   },
-  // Notifications (SwayNC)
   "custom/notification": {
     "tooltip": true,
     "format": "<span size='16pt'>{icon}</span>",
@@ -165,10 +203,9 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
   },
-  // Tray
   "tray": {
-    "icon-size": 20,
-    "spacing": 10,
+    "icon-size": 18, // Reduced icon size slightly
+    "spacing": 8,
     "show-passive-items": true,
     "reverse-direction": false,
     "smooth-scrolling-threshold": 1.0

@@ -3,11 +3,12 @@
   "include": "~/.config/waybar/modules.jsonc",
   "layer": "top",
   "position": "top",
-  "height": 32,
+  "height": 30,
 
   "modules-left": [
     "custom/launcher",
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "hyprland/window"
     //"custom/cava"
 
   ],

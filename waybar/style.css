@@ -1,10 +1,14 @@
-@import 'colors/one-dark.css';
+@import "colors/one-dark.css";
 
+/* ======================
+   Global
+   ====================== */
 * {
   border: none;
   border-radius: 0;
-  font-family: "Adwaita Sans", "JetBrains Mono Nerd Font Propo", sans-serif;
+  font-family: "JetBrains Mono Nerd Font Propo", sans-serif;
   font-weight: bold;
+  font-size: 11px;       /* 30px में 11px फोंट बेस्ट दिखता है */
   min-height: 0;
   padding: 0;
   margin: 0;
@@ -14,87 +18,23 @@ window#waybar {
   background: transparent;
 }
 
+/* ======================
+   Tooltip
+   ====================== */
 tooltip {
   background: @bg0;
-  border: 1px solid@bg3;
-  border-radius: 12px;
+  border: 1px solid @blue;
+  border-radius: 8px;
 }
 
 tooltip label {
   color: @fg;
-  padding: 6px;
+  padding: 4px 6px;
 }
 
-#custom-launcher {
-  background-color: @bg0;
-  color: @fg;
-  margin: 0 0 0 12px;
-  padding: 0 15px 0 15px;
-  border-radius: 18px;
-  border: 1px solid @bg1;
-}
-
-
-#workspaces {
-  background-color: @bg0;
-  padding: 5px 3px;
-  margin: 0 0 0 12px;
-  border-radius: 18px;
-  border: 1px solid @bg1;
-  color: @fg;
-}
-
-#workspaces button {
-  padding: 0px 6px;
-  margin: 0px 3px;
-  border-radius: 50px;
-  color: transparent;
-  background-color: @bg1;
-  transition: all 0.3s ease-in-out;
-}
-
-#workspaces button.active {
-  background-color: @blue;
-  color: @bg0;
-  min-width: 50px;
-  transition: all 0.3s ease-in-out;
-  font-size: 13px;
-}
-
-#workspaces button:hover {
-  background-color: @purple;
-  color: @bge;
-  border-radius: 16px;
-  min-width: 50px;
-  background-size: 400% 400%;
-}
-
-#workspaces button.urgent {
-  background-color: @red;
-  color: @bg;
-  border-radius: 16px;
-  min-width: 50px;
-  background-size: 400% 400%;
-  transition: all 0.3s ease-in-out;
-}
-#hyprland-window {
-  background-color: @bg0;
-  padding: 5px 3px;
-  margin: 0 0 0 12px;
-  border-radius: 18px;
-  border: 1px solid @bg1;
-  color: @fg;
-}
-
-#custom-cava{
-  background-color: @bg0;
-  color: @aqua;
-  padding: 0 15px 0 15px;
-  margin: 0 4px;
-  border-radius: 50px;
-  border: 1px solid @bg1;
-}
-
+/* ======================
+   Slim Pills (Modules)
+   ====================== */
 #tray,
 #backlight,
 #memory,
@@ -105,39 +45,154 @@ tooltip label {
 #pulseaudio,
 #network,
 #clock,
-#custom-notification {
+#custom-notification,
+#custom-launcher,
+#custom-wlogout,
+#custom-cava {
   background-color: @bg0;
-  padding: 0 8px;       /* reduce inside spacing */
-  margin: 0 4px;        /* reduce outside gap */
-  border-radius: 16px;
+
+  /* Vertical Padding 0 कर दी ताकि हाइट न बढ़े */
+  padding: 0 10px;
+
+  /* 30px हाइट में फिट होने के लिए मार्जिन: ऊपर-नीचे 3px */
+  margin: 3px 2px;
+
+  border-radius: 50px;
   border: 1px solid @bg1;
+  transition: all 0.3s ease;
 }
 
-#custom-wlogout{
-  background-color: @red;
-  padding: 0 15px 0 15px;
-  margin: 0 4px;
+/* Hover Effect */
+#tray:hover,
+#backlight:hover,
+#memory:hover,
+#cpu:hover,
+#temperature:hover,
+#mpris:hover,
+#battery:hover,
+#pulseaudio:hover,
+#network:hover,
+#clock:hover,
+#custom-notification:hover,
+#custom-launcher:hover,
+#custom-wlogout:hover {
+  background-color: @bg1;
+  color: @fg;
+  border-color: @blue;
+}
+
+/* ======================
+   Window Title (Slim)
+   ====================== */
+#hyprland-window {
+  background-color: @bg1;
+  color: @fg;
+  padding: 0 12px;
+  margin: 3px 2px;       /* 3px मार्जिन = 30px बार में परफेक्ट सेंटर */
+  margin-left: 8px;
+  border-radius: 50px;
+  border: 1px solid @blue;
+  font-weight: 800;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+#hyprland-window:hover {
+  background-color: @bg0;
+  border-color: @purple;
+}
+
+/* ======================
+   Workspaces
+   ====================== */
+#workspaces {
+  background-color: @bg0;
+  padding: 0px 2px;
+  margin: 3px 2px;      /* 3px मार्जिन */
+  margin-left: 8px;
   border-radius: 50px;
   border: 1px solid @bg1;
 }
 
-#clock {
+#workspaces button {
+  padding: 0 4px;
+  margin: 2px 2px;      /* बटन के अंदर थोड़ा गैप */
+  border-radius: 50%;
+  background-color: @bg1;
+  color: transparent;
+  transition: all 0.25s ease;
+}
+
+#workspaces button.active {
+  background-color: @blue;
+  color: @bg0;
+  border-radius: 50px;
+  min-width: 25px;
+  font-size: 11px;
+}
+
+#workspaces button:hover {
+  background-color: @purple;
+  color: @bg0;
+}
+
+#workspaces button.urgent {
+  background-color: @red;
+  color: @bg0;
+}
+
+/* ======================
+   Launcher & CAVA
+   ====================== */
+#custom-launcher {
   color: @blue;
+  margin-left: 8px;
+  padding: 0 10px;
+  font-size: 14px; /* लॉन्चर थोड़ा बड़ा अच्छा लगता है */
 }
 
-#custom-notification {
-  color: @fg;
+#custom-cava {
+  color: @aqua;
+  padding: 0 8px;
 }
 
-#pulseaudio {
-  color: @yellow;
+/* ======================
+   Specific Colors
+   ====================== */
+#clock { color: @blue; }
+#pulseaudio { color: @yellow; }
+#network { color: @purple; }
+#cpu { color: @red; }
+#memory { color: @orange; }
+#temperature { color: @aqua; }
+#custom-notification { color: @fg; }
+
+/* ======================
+   Battery
+   ====================== */
+#battery { color: @green; }
+#battery.charging { color: @aqua; }
+#battery.warning { color: @orange; }
+#battery.critical {
+  color: @red;
+  animation: battery-blink 1s steps(2) infinite;
 }
 
-#network{
-  color: @purple;
+@keyframes battery-blink {
+  50% { background-color: @bg2; }
 }
 
-#battery{
-  color: @green;
+/* ======================
+   Logout
+   ====================== */
+#custom-wlogout {
+  background-color: @red;
+  color: @bg0;
+  border: 1px solid @red;
+  margin-right: 8px;
+  padding: 0 10px;
 }
 
+#custom-wlogout:hover {
+    background-color: @bg0;
+    color: @red;
+}
