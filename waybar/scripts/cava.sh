@@ -1,12 +1,8 @@
 #!/bin/bash
 
-# Not my own work. Credit to original author
-
-#----- Optimized bars animation without much CPU usage increase --------
 bar="▁▂▃▄▅▆▇█"
 dict="s/;//g"
 
-# Calculate the length of the bar outside the loop
 bar_length=${#bar}
 
 # Create dictionary to replace char with bar
@@ -18,10 +14,7 @@ done
 config_file="/tmp/bar_cava_config"
 cat >"$config_file" <<EOF
 [general]
-# Older systems show significant CPU use with default framerate
-# Setting maximum framerate to 30
-# You can increase the value if you wish
-framerate = 60
+framerate = 50
 bars = 14
 
 [input]

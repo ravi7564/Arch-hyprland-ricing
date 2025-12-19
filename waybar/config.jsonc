@@ -4,23 +4,17 @@
   "layer": "top",
   "position": "top",
   "height": 30,
-
   "modules-left": [
     "custom/launcher",
     "hyprland/workspaces",
-    "hyprland/window"
-    //"custom/cava"
-
+    "hyprland/window",
+    "custom/cava"
   ],
-
   "modules-center": [
-  "backlight",
-  "memory",
-  "cpu",
-  "temperature",
-  "tray"
+    "tray",
+    "custom/system-info",
+    "power-profiles-daemon"
   ],
-
   "modules-right": [
     "mpris",
     "pulseaudio",
@@ -29,5 +23,4 @@
     "custom/notification",
     "custom/wlogout"
   ]
-
 }

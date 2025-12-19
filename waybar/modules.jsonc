@@ -3,7 +3,8 @@
   "custom/launcher": {
     "format": "",
     "on-click": "~/.config/rofi/launchers/type-1/launcher.sh",
-    "tooltip": false
+    "tooltip": true,
+    "tooltip-format": "Open Application Launcher"
   },
   // Workspaces
   "hyprland/workspaces": {
@@ -22,23 +23,18 @@
       "*": 5
     }
   },
-  // Window Title with Colored Icons (Using rewrite rules)
   "hyprland/window": {
     "format": "{}",
     "max-length": 35,
     "separate-outputs": true,
     "rewrite": {
-      // 🌍 Web Browsers
       "(.*) — Mozilla Firefox": "<span foreground='#FF9500'>󰈹</span>  Firefox",
       "(.*) - Google Chrome": "<span foreground='#4285F4'></span>  Chrome",
       "(.*) - Brave": "<span foreground='#FB542B'></span>  Brave",
-      // 💻 Development
       "(.*) - Visual Studio Code": "<span foreground='#007ACC'>󰨞</span>  VS Code",
       "(.*) - Neovim": "<span foreground='#57A143'></span>  Neovim",
-      // 🐚 Terminal (Matches "fish", "kitty", etc.)
       "(.*) - fish": "<span foreground='#98c379'></span>  Terminal",
       "kitty": "<span foreground='#98c379'></span>  Kitty",
-      // 🎵 Media & Social
       "(.*) - Spotify": "<span foreground='#1DB954'></span>  Spotify",
       "(.*) - Discord": "<span foreground='#5865F2'>󰙯</span>  Discord",
       "(.*)": " $1"
@@ -51,32 +47,6 @@
     "on-click-middle": "playerctl play-pause",
     "on-click-right": "playerctl next",
     "on-click-left": "playerctl previous"
-  },
-  // === NEW HARDWARE GROUP ===
-  "group/hardware": {
-    "orientation": "horizontal",
-    "modules": [
-      "cpu",
-      "memory",
-      "temperature"
-    ]
-  },
-  // Memory (Compact)
-  "memory": {
-    "format": "🎞 {}%", // Removed ': >3' padding to save space
-    "on-click": "neohtop"
-  },
-  // CPU (Compact)
-  "cpu": {
-    "format": "󰘚 {usage}%", // Removed ': >3' padding
-    "on-click": "neohtop"
-  },
-  // Temperature
-  "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-    "critical-threshold": 80,
-    "format": " {temperatureC}°C",
-    "on-click": "neohtop"
   },
   "mpris": {
     "format": "{player_icon} {title}",
@@ -118,16 +88,6 @@
     ],
     "tooltip": true
   },
-  // Backlight (Compact)
-  "backlight": {
-    "format": "{icon} {percent}%", // Removed ': >3' padding
-    "format-icons": [
-      "",
-      ""
-    ],
-    "on-scroll-down": "brightnessctl set 5%-",
-    "on-scroll-up": "brightnessctl set +5%"
-  },
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": "🔇 {volume}%",
@@ -144,24 +104,11 @@
         "🔊"
       ]
     },
-    "on-click": "~/.config/waybar/scripts/audio-control.sh",
+    "on-click": "~/.config/waybar/scripts/volume-control.sh",
     "on-click-right": "pavucontrol",
     "tooltip": true,
     "tooltip-format": "Output: {volume}%\nClick: Audio Controls\nRight Click: PavuControl",
     "signal": 8
-  },
-  "network": {
-    "format": "{ifname}",
-    "format-wifi": "ᯤ {essid}", // Removed signal strength to save space (it's in tooltip)
-    "format-ethernet": " {ifname}",
-    "format-disconnected": "⚠",
-    "tooltip-format": " {ifname} via {gwaddri}",
-    "tooltip-format-wifi": " {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
-    "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
-    "tooltip-format-disconnected": "Disconnected",
-    "max-length": 50,
-    "on-click": "nm-connection-editor",
-    "on-click-right": "nm-connection-editor"
   },
   "clock": {
     "format": " {:%H:%M}", // Removed Seconds and day to make it very small (hover for full date)
@@ -210,10 +157,27 @@
     "reverse-direction": false,
     "smooth-scrolling-threshold": 1.0
   },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
   "custom/wlogout": {
     "format": "⏻",
     "tooltip": "false",
     "on-click": "~/.config/rofi/powermenu/type-1/powermenu.sh",
     "interval": "once"
+  },
+  "custom/system-info": {
+    "exec": "~/.config/waybar/scripts/system-info.sh",
+    "interval": 1,
+    "return-type": "text",
+    "tooltip": true
   }
 }

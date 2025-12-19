@@ -1,73 +1,62 @@
-@import "colors/one-dark.css";
+/* Import the Matugen generated file */
+@import "colors/colors.css";
 
-/* ======================
-   Global
-   ====================== */
+/* =============================================================================
+ *  1. GLOBAL RESET & TYPOGRAPHY
+ *  ============================================================================= */
 * {
   border: none;
   border-radius: 0;
   font-family: "JetBrains Mono Nerd Font Propo", sans-serif;
-  font-weight: bold;
-  font-size: 11px;       /* 30px में 11px फोंट बेस्ट दिखता है */
+  font-weight: 800;
+  font-size: 11px;
   min-height: 0;
   padding: 0;
   margin: 0;
 }
 
 window#waybar {
-  background: transparent;
+  background: @background;
 }
 
-/* ======================
-   Tooltip
-   ====================== */
+/* =============================================================================
+ *  2. TOOLTIPS (Clean Glassy Look)
+ *  ============================================================================= */
 tooltip {
-  background: @bg0;
-  border: 1px solid @blue;
-  border-radius: 8px;
+  background: @surface_container;
+  border: 1px solid @outline_variant;
+  border-radius: 12px;
 }
 
 tooltip label {
-  color: @fg;
-  padding: 4px 6px;
+  color: @on_surface;
+  padding: 8px 10px;
 }
 
-/* ======================
-   Slim Pills (Modules)
-   ====================== */
-#tray,
-#backlight,
-#memory,
-#cpu,
-#temperature,
+#power-profiles-daemon,
 #mpris,
 #battery,
 #pulseaudio,
 #network,
 #clock,
+#tray,
+#custom-system-info,
 #custom-notification,
 #custom-launcher,
-#custom-wlogout,
-#custom-cava {
-  background-color: @bg0;
-
-  /* Vertical Padding 0 कर दी ताकि हाइट न बढ़े */
-  padding: 0 10px;
-
-  /* 30px हाइट में फिट होने के लिए मार्जिन: ऊपर-नीचे 3px */
-  margin: 3px 2px;
-
-  border-radius: 50px;
-  border: 1px solid @bg1;
-  transition: all 0.3s ease;
+#custom-wlogout{
+background-color: @surface;
+color: @on_surface;
+/* Spacing */
+padding: 0 14px;
+margin: 4px 3px;
+border-radius: 24px;  /* Smooth rounded pill */
+border: 1px solid @surface_container_high;
+transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Hover Effect */
+/* Hover Effect: Glow slightly with the Primary color */
 #tray:hover,
-#backlight:hover,
-#memory:hover,
-#cpu:hover,
-#temperature:hover,
+#power-profiles-daemon:hover,
 #mpris:hover,
 #battery:hover,
 #pulseaudio:hover,
@@ -76,123 +65,122 @@ tooltip label {
 #custom-notification:hover,
 #custom-launcher:hover,
 #custom-wlogout:hover {
-  background-color: @bg1;
-  color: @fg;
-  border-color: @blue;
+background-color: @surface_container;
+border-color: @primary;
+color: @primary;
+box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Soft shadow on hover */
 }
 
-/* ======================
-   Window Title (Slim)
-   ====================== */
+/* =============================================================================
+ *  4. WINDOW TITLE (Focus Element)
+ *  ============================================================================= */
 #hyprland-window {
-  background-color: @bg1;
-  color: @fg;
-  padding: 0 12px;
-  margin: 3px 2px;       /* 3px मार्जिन = 30px बार में परफेक्ट सेंटर */
-  margin-left: 8px;
-  border-radius: 50px;
-  border: 1px solid @blue;
-  font-weight: 800;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+background-color: @surface_container;
+color: @primary;
+padding: 0 18px;
+margin: 4px 6px;
+border-radius: 24px;
+border: 1px solid @primary; /* Highlighted border */
+font-weight: 900;
 }
 
-#hyprland-window:hover {
-  background-color: @bg0;
-  border-color: @purple;
-}
-
-/* ======================
-   Workspaces
-   ====================== */
+/* =============================================================================
+ *  5. WORKSPACES (Floating Dots)
+ *  ============================================================================= */
 #workspaces {
-  background-color: @bg0;
-  padding: 0px 2px;
-  margin: 3px 2px;      /* 3px मार्जिन */
-  margin-left: 8px;
-  border-radius: 50px;
-  border: 1px solid @bg1;
+background-color: @surface;
+padding: 2px 4px;
+margin: 4px 3px;
+margin-left: 8px;
+border-radius: 24px;
+border: 1px solid @surface_container_high;
 }
 
 #workspaces button {
-  padding: 0 4px;
-  margin: 2px 2px;      /* बटन के अंदर थोड़ा गैप */
-  border-radius: 50%;
-  background-color: @bg1;
-  color: transparent;
-  transition: all 0.25s ease;
+padding: 0 4px;
+margin: 0 3px;
+border-radius: 16px;
+color: transparent; /* Hides text for inactive dots */
+background-color: @surface_container_highest;
+transition: all 0.3s ease;
+min-width: 12px;
 }
 
+/* Active Workspace: Expands and turns Primary */
 #workspaces button.active {
-  background-color: @blue;
-  color: @bg0;
-  border-radius: 50px;
-  min-width: 25px;
-  font-size: 11px;
+background-color: @primary;
+color: @on_primary;
+min-width: 32px;      /* Expands to show number */
+padding: 0 6px;
 }
 
 #workspaces button:hover {
-  background-color: @purple;
-  color: @bg0;
+background-color: @tertiary;
+box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
 #workspaces button.urgent {
-  background-color: @red;
-  color: @bg0;
+background-color: @error;
+color: @on_error;
 }
 
-/* ======================
-   Launcher & CAVA
-   ====================== */
+/* =============================================================================
+ *  6. MODULE SPECIFIC COLORS
+ *  ============================================================================= */
+/* We map modules to different theme colors for visual variety */
+
 #custom-launcher {
-  color: @blue;
-  margin-left: 8px;
-  padding: 0 10px;
-  font-size: 14px; /* लॉन्चर थोड़ा बड़ा अच्छा लगता है */
+color: @primary;
+font-size: 16px;
+padding-right: 18px; /* Extra space for the icon */
+background-color: transparent; /* No background for launcher */
+border: none;
 }
 
-#custom-cava {
-  color: @aqua;
-  padding: 0 8px;
+#clock {
+color: @primary;
+font-weight: 900;
 }
 
-/* ======================
-   Specific Colors
-   ====================== */
-#clock { color: @blue; }
-#pulseaudio { color: @yellow; }
-#network { color: @purple; }
-#cpu { color: @red; }
-#memory { color: @orange; }
-#temperature { color: @aqua; }
-#custom-notification { color: @fg; }
+#network {
+color: @tertiary; /* Lavender/Purple tone */
+}
 
-/* ======================
-   Battery
-   ====================== */
-#battery { color: @green; }
-#battery.charging { color: @aqua; }
-#battery.warning { color: @orange; }
+#pulseaudio {
+color: @secondary; /* Blue-Grey tone */
+}
+/* Battery States */
+#battery {
+color: @on_surface;
+}
+#battery.charging {
+color: @primary;
+}
+#battery.warning {
+color: @error_container;
+}
 #battery.critical {
-  color: @red;
-  animation: battery-blink 1s steps(2) infinite;
+color: @error;
+background-color: @on_error; /* High contrast warning */
+animation: battery-blink 1s infinite alternate;
 }
 
 @keyframes battery-blink {
-  50% { background-color: @bg2; }
+  to {
+    background-color: @error_container;
+    color: @on_error_container;
+  }
 }
 
-/* ======================
-   Logout
-   ====================== */
+/* Logout Button (Red accent) */
 #custom-wlogout {
-  background-color: @red;
-  color: @bg0;
-  border: 1px solid @red;
-  margin-right: 8px;
-  padding: 0 10px;
+background-color: @surface;
+color: @error;
+border: 1px solid @error;
+margin-right: 10px;
 }
 
 #custom-wlogout:hover {
-    background-color: @bg0;
-    color: @red;
+background-color: @error;
+color: @on_error;
 }
