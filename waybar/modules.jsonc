@@ -40,15 +40,6 @@
       "(.*)": " $1"
     }
   },
-  // CAVA Audio Visualizer
-  "custom/cava": {
-    "exec": "~/.config/waybar/scripts/cava.sh",
-    "format": "♪ {}",
-    "on-click": "playerctl play-pause",
-    "on-click-middle": "playerctl next",
-    "on-click-right": "playerctl previous"
-
-  },
   "mpris": {
     "format": "{player_icon} {title}",
     "format-paused": "{status_icon} {title}",
@@ -62,6 +53,15 @@
     "title-len": 20,
     "artist-len": 0,
     "album-len": 0
+  },
+  // CAVA Audio Visualizer
+  "custom/cava": {
+    "exec": "~/.config/waybar/scripts/cava.sh",
+    "format": "♪ {}",
+    "on-click": "playerctl play-pause",
+    "on-click-middle": "playerctl next",
+    "on-click-right": "playerctl previous"
+
   },
   // Battery
   "battery": {
