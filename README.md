@@ -31,3 +31,30 @@ then save.
 waybar  for top bar or anywhere on the screen you want and i am using mechbar 
 https://github.com/sejjy/mechabar
 swaync for notification
+
+for autologin and then hyprlock to lock:
+sudo systemctl edit getty@tty1
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin ravi --skip-login --noclear %I $TERM
+Type=simple
+
+then go to this location /home/ravi/.config/systemd/user/  then make a file
+hyprland.service and paste this:
+[Unit]
+Description=Hyprland Wayland Session
+After=graphical-session-pre.target
+Wants=graphical-session-pre.target
+
+[Service]
+ExecStart=/usr/bin/Hyprland
+Restart=always
+RestartSec=1
+Environment=XDG_SESSION_TYPE=wayland
+Environment=XDG_CURRENT_DESKTOP=Hyprland
+
+[Install]
+WantedBy=default.target
+
+then enable system service
+systemctl --user enable hyprland.service.
